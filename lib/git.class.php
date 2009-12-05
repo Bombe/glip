@@ -449,7 +449,7 @@ class Git
 	    throw new Exception(sprintf("directory %s already exists", $path));
 	}
 
-	if (!mkdir($path, 0777, true))
+	if (!@mkdir($path, 0777, true))
 	{
 	    throw new Exception(sprintf("can not create directory %s", $path));
 	}
@@ -457,7 +457,7 @@ class Git
 	if (!$bare)
 	{
 	    $gitPath = $path . "/.git";
-	    if (!mkdir($gitPath, 0777, true))
+	    if (!@mkdir($gitPath, 0777, true))
 	    {
 		throw new Exception(sprintf("can not create directory %s", $gitPath));
 	    }
@@ -468,31 +468,31 @@ class Git
 	}
 
 	/* create necessary directories. */
-	if (!mkdir($gitPath . "/branches"))
+	if (!@mkdir($gitPath . "/branches"))
 	{
 	    throw new Exception("can not create branches directory");
 	}
-	if (!mkdir($gitPath . "/objects"))
+	if (!@mkdir($gitPath . "/objects"))
 	{
 	    throw new Exception("can not create objects directory");
 	}
-	if (!mkdir($gitPath . "/objects/info"))
+	if (!@mkdir($gitPath . "/objects/info"))
 	{
 	    throw new Exception("can not create objects/info directory");
 	}
-	if (!mkdir($gitPath . "/objects/pack"))
+	if (!@mkdir($gitPath . "/objects/pack"))
 	{
 	    throw new Exception("can not create objects/pack directory");
 	}
-	if (!mkdir($gitPath . "/refs"))
+	if (!@mkdir($gitPath . "/refs"))
 	{
 	    throw new Exception("can not create refs directory");
 	}
-	if (!mkdir($gitPath . "/refs/heads"))
+	if (!@mkdir($gitPath . "/refs/heads"))
 	{
 	    throw new Exception("can not create refs/heads directory");
 	}
-	if (!mkdir($gitPath ."/refs/tags"))
+	if (!@mkdir($gitPath ."/refs/tags"))
 	{
 	    throw new Exception("can not create refs/tags directory");
 	}
