@@ -456,9 +456,15 @@ class Git
 
 	if (!$bare)
 	{
-	    if (!mkdir($path . "/.git", 0777, true)) {
-		throw new Exception(sprintf("can not create directory %s", $path . "/.git"));
+	    $gitPath = $path . "/.git";
+	    if (!mkdir($gitPath, 0777, true))
+	    {
+		throw new Exception(sprintf("can not create directory %s", $gitPath));
 	    }
+	}
+	else
+	{
+	    $gitPath = $path;
 	}
     }
 
