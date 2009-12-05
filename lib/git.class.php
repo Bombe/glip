@@ -518,6 +518,15 @@ class Git
 	}
 	fwrite($descriptionFile, "Unnamed repository (created by glip); edit this file to name it for gitweb.\n");
 	fclose($descriptionFile);
+
+	/* create HEAD pointer. */
+	$headPointerFile = @fopen($gitPath . "/HEAD", "w");
+	if ($headPointerFile === false)
+	{
+	    throw new Exception("could not create HEAD pointer");
+	}
+	fwrite($headPointerFile, "ref: refs/heads/master\n");
+	fclose($headPointerFile);
     }
 
 }
