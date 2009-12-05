@@ -527,6 +527,8 @@ class Git
 	}
 	fwrite($headPointerFile, "ref: refs/heads/master\n");
 	fclose($headPointerFile);
+
+	return new Git($gitPath);
     }
 
 }
