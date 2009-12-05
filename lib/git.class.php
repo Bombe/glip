@@ -430,3 +430,4 @@ class Git
     }
 }
 
+// vim:tabstop=8:softtabstop=4
