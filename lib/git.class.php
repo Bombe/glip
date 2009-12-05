@@ -484,6 +484,18 @@ class Git
 	{
 	    throw new Exception("can not create objects/pack directory");
 	}
+	if (!mkdir($gitPath . "/refs"))
+	{
+	    throw new Exception("can not create refs directory");
+	}
+	if (!mkdir($gitPath . "/refs/heads"))
+	{
+	    throw new Exception("can not create refs/heads directory");
+	}
+	if (!mkdir($gitPath ."/refs/tags"))
+	{
+	    throw new Exception("can not create refs/tags directory");
+	}
 
     }
 
