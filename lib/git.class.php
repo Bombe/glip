@@ -510,6 +510,14 @@ class Git
 	fwrite($configFile, "	logallrefupdates = true\n");
 	fclose($configFile);
 
+	/* create description file. */
+	$descriptionFile = @fopen($gitPath . "/description", "w");
+	if ($descriptionFile === false)
+	{
+	    throw new Exception("could not create description file");
+	}
+	fwrite($descriptionFile, "Unnamed repository (created by glip); edit this file to name it for gitweb.\n");
+	fclose($descriptionFile);
     }
 
 }
