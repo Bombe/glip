@@ -98,6 +98,14 @@ class Git
 	{
 	    throw new Exception("not a Git repository, HEAD not found");
 	}
+	if (!file_exists(sprintf("%s/refs/heads", $dir)))
+	{
+		throw new Exception("not a Git repository, refs/heads not found");
+	}
+	if (!file_exists(sprintf("%s/refs/tags", $dir)))
+	{
+		throw new Exception("not a Git repository, refs/tags not found");
+	}
 
 	$this->dir = $dir;
 
