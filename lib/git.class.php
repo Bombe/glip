@@ -94,6 +94,10 @@ class Git
 	{
 	    throw new Exception("not a Git repository, config not found");
 	}
+	if (!file_exists(sprintf("%s/HEAD", $dir)))
+	{
+	    throw new Exception("not a Git repository, HEAD not found");
+	}
 
 	$this->dir = $dir;
 
