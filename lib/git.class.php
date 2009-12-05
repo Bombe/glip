@@ -476,6 +476,14 @@ class Git
 	{
 	    throw new Exception("can not create objects directory");
 	}
+	if (!mkdir($gitPath . "/objects/info"))
+	{
+	    throw new Exception("can not create objects/info directory");
+	}
+	if (!mkdir($gitPath . "/objects/pack"))
+	{
+	    throw new Exception("can not create objects/pack directory");
+	}
 
     }
 
