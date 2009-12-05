@@ -428,5 +428,38 @@ class Git
 	}
 	throw new Exception(sprintf('no such branch: %s', $branch));
     }
+
+    /**
+     * @brief Checks whether a given branch exists.
+     *
+     * @param $branch (string) The branch to check for, default @em master.
+     * @return (boolean) true if the branch exists, false otherwise
+     */
+    public function hasTip($branch = "master")
+    {
+	$subpath = sprintf('refs/heads/%s', $branch);
+	$path = sprintf('%s/%s', $this->dir, $subpath);
+	if (file_exists($path))
+	    return true;
+	$path = sprintf('%s/packed-refs', $this->dir);
+	if (file_exists($path))
+	{
+	    $head = NULL;
+	    $f = fopen($path, 'rb');
+	    flock($f, LOCK_SH);
+	    while ($head === NULL && ($line = fgets($f)) !== FALSE)
+	    {
+		if ($line{0} == '#')
+		    continue;
+		$parts = explode(' ', trim($line));
+		if (count($parts) == 2 && $parts[1] == $subpath)
+		    $head = sha1_bin($parts[0]);
+	    }
+	    fclose($f);
+	    return ($head !== NULL);
+	}
+	return false;
+    }
+
 }
 
