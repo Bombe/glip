@@ -466,6 +466,13 @@ class Git
 	{
 	    $gitPath = $path;
 	}
+
+	/* create necessary directories. */
+	if (!mkdir($gitPath . "/branches"))
+	{
+	    throw new Exception("can not create branches directory");
+	}
+
     }
 
 }
