@@ -442,7 +442,7 @@ class Git
     public static function createRepository($path, $bare = false)
     {
 	/* check if the directory already exists. */
-	$directory = opendir($path);
+	$directory = @opendir($path);
 	if ($directory !== false) {
 	    closedir($directory);
 	    throw new Exception(sprintf("directory %s already exists", $path));
