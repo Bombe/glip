@@ -89,6 +89,12 @@ class Git
 
     public function __construct($dir)
     {
+	/* try to verify that this is in fact a Git repository. */
+	if (!file_exists(sprintf("%s/config", $dir)))
+	{
+	    throw new Exception("not a Git repository, config not found");
+	}
+
 	$this->dir = $dir;
 
 	$this->packs = array();
