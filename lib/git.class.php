@@ -428,6 +428,37 @@ class Git
 	}
 	throw new Exception(sprintf('no such branch: %s', $branch));
     }
+
+    /**
+     * @brief Creates a new repository.
+     *
+     * @param $path (string) The path of the repository
+     * @param $bare (boolean) true to create a bare repository, false to create
+     *     a non-bare repository
+     * @return (Git) The created Git repository
+     * @throws (Exception) if the repository path already exists or can not be
+     *     created
+     */
+    public static function createRepository($path, $bare = false)
+    {
+	/* check if the directory already exists. */
+	$directory = opendir($path);
+	if ($directory !== false) {
+	    closedir($directory);
+	    throw new Exception(sprintf("directory %s already exists", $path));
+	}
+
+	if (!mkdir($path, 0777, true)) {
+	    throw new Exception(sprintf("can not create directory %s", $path));
+	}
+
+	if (!$bare) {
+	    if (!mkdir($path . "/.git", 0777, true)) {
+		throw new Exception(sprintf("can not create directory %s", $path . "/.git"));
+	    }
+	}
+    }
+
 }
 
 // vim:tabstop=8:softtabstop=4
