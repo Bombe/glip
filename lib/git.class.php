@@ -443,16 +443,19 @@ class Git
     {
 	/* check if the directory already exists. */
 	$directory = @opendir($path);
-	if ($directory !== false) {
+	if ($directory !== false)
+	{
 	    closedir($directory);
 	    throw new Exception(sprintf("directory %s already exists", $path));
 	}
 
-	if (!mkdir($path, 0777, true)) {
+	if (!mkdir($path, 0777, true))
+	{
 	    throw new Exception(sprintf("can not create directory %s", $path));
 	}
 
-	if (!$bare) {
+	if (!$bare)
+	{
 	    if (!mkdir($path . "/.git", 0777, true)) {
 		throw new Exception(sprintf("can not create directory %s", $path . "/.git"));
 	    }
