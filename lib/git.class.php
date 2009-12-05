@@ -497,6 +497,19 @@ class Git
 	    throw new Exception("can not create refs/tags directory");
 	}
 
+	/* create config. */
+	$configFile = @fopen($gitPath . "/config", "w");
+	if ($configFile === false)
+	{
+	    throw new Exception("could not create config file");
+	}
+	fwrite($configFile, "[config]\n");
+	fwrite($configFile, "	repositoryformatversion = 0\n");
+	fwrite($configFile, "	filemode = true\n");
+	fwrite($configFile, "	bare = " . ($bare ? "true" : "false") . "\n");
+	fwrite($configFile, "	logallrefupdates = true\n");
+	fclose($configFile);
+
     }
 
 }
