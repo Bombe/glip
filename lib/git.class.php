@@ -472,6 +472,10 @@ class Git
 	{
 	    throw new Exception("can not create branches directory");
 	}
+	if (!mkdir($gitPath . "/objects"))
+	{
+	    throw new Exception("can not create objects directory");
+	}
 
     }
 
